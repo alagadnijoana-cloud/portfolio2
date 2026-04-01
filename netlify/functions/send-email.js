@@ -36,7 +36,11 @@ exports.handler = async (event, context) => {
         console.error('Error sending email:', error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ message: 'Failed to send email. Please try again later.' }),
+            body: JSON.stringify({ 
+                message: 'Failed to send email.', 
+                debug: error.message,
+                hint: 'Check your EMAIL_USER and EMAIL_PASS environment variables in Netlify.'
+            }),
         };
     }
 };

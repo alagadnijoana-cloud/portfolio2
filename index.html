@@ -300,7 +300,11 @@
             });
 
             const result = await response.json();
-            alert(result.message);
+            if (result.debug) {
+                alert(`${result.message}\nError: ${result.debug}\n${result.hint}`);
+            } else {
+                alert(result.message);
+            }
         });
     </script>
 </body>
