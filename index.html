@@ -11,116 +11,163 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0f172a',
-                        secondary: '#334155',
-                        accent: '#3b82f6',
+                        primary: '#000000',
+                        secondary: '#1a1a1a',
+                        accent: '#ff3e00',
+                        soft: '#f3f4f6',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Playfair Display', 'serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700;900&display=swap');
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #ff3e00 0%, #ff8c00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
+<body class="bg-white text-primary font-sans">
+
+    <!-- Custom Cursor (Optional but adds to 'Creative' feel) -->
+    <div id="cursor" class="fixed w-8 h-8 border-2 border-accent rounded-full pointer-events-none z-[9999] transition-transform duration-100 hidden md:block"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 font-bold text-2xl tracking-tight text-primary">
-                    Ferdinand<span class="text-accent"> Fortes</span>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8 text-sm font-medium">
-                        <a href="#home" class="text-slate-600 hover:text-accent transition-colors">Home</a>
-                        <a href="#about" class="text-slate-600 hover:text-accent transition-colors">About</a>
-                        <a href="#work-experience" class="text-slate-600 hover:text-accent transition-colors">Work Experience</a>
-                        <a href="#skills" class="text-slate-600 hover:text-accent transition-colors">Skills</a>
-                        <a href="#languages" class="text-slate-600 hover:text-accent transition-colors">Languages</a>
-                        <a href="#projects" class="text-slate-600 hover:text-accent transition-colors">Projects</a>
-                        <a href="#contact" class="px-4 py-2 rounded-full bg-primary text-white hover:bg-accent transition-all">Contact Me</a>
-                    </div>
-                </div>
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="font-display text-2xl font-black tracking-tighter">
+                F. <span class="text-accent">FORTES</span>
+            </div>
+            <div class="hidden md:flex space-x-10 text-sm font-semibold uppercase tracking-widest">
+                <a href="#home" class="hover:text-accent transition-colors">Home</a>
+                <a href="#about" class="hover:text-accent transition-colors">About</a>
+                <a href="#work-experience" class="hover:text-accent transition-colors">Experience</a>
+                <a href="#skills" class="hover:text-accent transition-colors">Skills</a>
+                <a href="#projects" class="hover:text-accent transition-colors">Projects</a>
+                <a href="#contact" class="px-6 py-2 bg-primary text-white hover:bg-accent transition-all rounded-full">Hire Me</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="pt-32 pb-20 lg:pt-48 lg:pb-32 px-4">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-accent font-semibold tracking-wide uppercase text-sm mb-3">Available for opportunities</h2>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-primary mb-6 tracking-tight">
-                Crafting Digital <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-600">Experiences</span> that Matter.
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden bg-[#fafafa]">
+        <div class="absolute top-20 left-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+            <span class="inline-block px-4 py-1 bg-accent/10 text-accent rounded-full text-xs font-bold uppercase tracking-widest mb-6 floating">Available for Freelance</span>
+            <h1 class="font-display text-6xl md:text-9xl font-black leading-none mb-8 tracking-tighter">
+                CREATIVE <br> <span class="gradient-text italic">VISIONARY</span>
             </h1>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-10">
-                I'm a Website Designer specializing in building exceptional digital products that are functional, beautiful, and user-centered.
+            <p class="text-xl md:text-2xl text-secondary/60 max-w-2xl mx-auto mb-12 font-light">
+                Specializing in high-impact visual storytelling and digital product design.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#projects" class="px-8 py-4 rounded-xl bg-primary text-white font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-all">View My Work</a>
-                <a href="#contact" class="px-8 py-4 rounded-xl border border-slate-300 font-semibold hover:bg-slate-100 transition-all">Get In Touch</a>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="#projects" class="px-10 py-5 bg-primary text-white font-bold rounded-full hover:scale-105 transition-transform">Explore My Work</a>
+                <a href="#contact" class="px-10 py-5 border-2 border-primary font-bold rounded-full hover:bg-primary hover:text-white transition-all">Get In Touch</a>
             </div>
         </div>
     </section>
 
     <!-- Languages Section -->
-    <section id="languages" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h3 class="text-3xl font-bold text-primary mb-4">Languages</h3>
-                <div class="h-1 w-20 bg-accent mx-auto rounded-full"></div>
+    <section id="languages" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal">
+                <h2 class="font-display text-5xl md:text-7xl font-black tracking-tighter">FLUENT <br>IN <span class="text-accent">GLOBAL</span></h2>
+                <p class="text-secondary/50 font-semibold uppercase tracking-widest text-sm mt-4 md:mt-0">Communication is key</p>
             </div>
-            <div class="flex justify-center space-x-8">
-                <div class="text-center">
-                    <h4 class="font-bold text-primary">Tagalog</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="p-12 bg-soft rounded-[3rem] reveal">
+                    <span class="text-accent font-bold text-sm uppercase tracking-widest mb-4 block">Native</span>
+                    <h3 class="text-4xl font-bold mb-6">Tagalog</h3>
+                    <div class="h-2 w-full bg-black/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-accent w-full"></div>
+                    </div>
                 </div>
-                <div class="text-center">
-                    <h4 class="font-bold text-primary">English</h4>
+                <div class="p-12 bg-soft rounded-[3rem] reveal">
+                    <span class="text-accent font-bold text-sm uppercase tracking-widest mb-4 block">Professional</span>
+                    <h3 class="text-4xl font-bold mb-6">English</h3>
+                    <div class="h-2 w-full bg-black/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-accent w-[90%]"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Work Experience Section -->
-    <section id="work-experience" class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h3 class="text-3xl font-bold text-primary mb-4">Work Experience</h3>
-                <div class="h-1 w-20 bg-accent mx-auto rounded-full"></div>
+    <section id="work-experience" class="py-32 bg-[#fafafa]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-20 reveal">
+                <h2 class="font-display text-5xl md:text-7xl font-black tracking-tighter mb-4">PROFESSIONAL <br><span class="gradient-text">JOURNEY</span></h2>
             </div>
-            <div class="space-y-12">
+            
+            <div class="space-y-10">
                 <!-- McDonalds Crew -->
-                <div class="grid md:grid-cols-3 gap-6 items-start">
-                    <div class="md:col-span-1">
-                        <h4 class="text-xl font-bold text-primary">MCDONALDS CREW</h4>
-                        <p class="text-slate-500 text-sm">2023-2024</p>
-                    </div>
-                    <div class="md:col-span-2">
-                        <ul class="list-disc list-inside text-slate-600 space-y-2">
-                            <li>Delivered excellent customer service in a fast-paced restaurant environment, ensuring a positive dining experience for customers.</li>
-                            <li>Assisted with food preparation, order processing, and maintaining cleanliness and organization in the workplace.</li>
-                            <li>Worked effectively with team members during busy hours to maintain efficient service.</li>
-                            <li>Followed strict hygiene, safety, and quality standards set by the company.</li>
-                            <li>Developed strong teamwork, communication, and time-management skills.</li>
-                        </ul>
+                <div class="group p-10 md:p-16 bg-white rounded-[4rem] hover:bg-primary hover:text-white transition-all duration-500 reveal border border-black/5 shadow-xl shadow-black/5">
+                    <div class="flex flex-col md:flex-row justify-between gap-8">
+                        <div class="md:w-1/3">
+                            <span class="text-accent font-bold text-sm uppercase tracking-widest mb-4 block">2023 - 2024</span>
+                            <h3 class="text-3xl md:text-4xl font-bold leading-tight uppercase tracking-tighter">McDonald's <br>Crew Member</h3>
+                        </div>
+                        <div class="md:w-2/3">
+                            <ul class="space-y-4 text-lg font-light opacity-80">
+                                <li class="flex gap-4"><span>—</span> Delivered excellent customer service in a fast-paced environment.</li>
+                                <li class="flex gap-4"><span>—</span> Mastered teamwork and time-management during high-pressure shifts.</li>
+                                <li class="flex gap-4"><span>—</span> Maintained strict quality and hygiene standards.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <!-- Property Rental and Commercial Support -->
-                <div class="grid md:grid-cols-3 gap-6 items-start">
-                    <div class="md:col-span-1">
-                        <h4 class="text-xl font-bold text-primary">PROPERTY RENTAL AND COMMERCIAL SUPPORT</h4>
-                        <p class="text-slate-500 text-sm">(TOP CONTRIBUTOR FACEBOOK GROUP)</p>
-                    </div>
-                    <div class="md:col-span-2">
-                        <ul class="list-disc list-inside text-slate-600 space-y-2">
-                            <li>Assisted in managing commercial spaces and room-for-rent properties, helping coordinate inquiries and tenant communications.</li>
-                            <li>Recognized as a Top Contributor for generating potential clients and helping increase occupancy of rental units.</li>
-                            <li>Promoted available rental spaces through online platforms and direct communication with interested renters.</li>
-                            <li>Helped organize viewing schedules, respond to customer questions, and support rental transactions.</li>
-                            <li>Developed skills in sales communication, client relations, and property marketing.</li>
-                        </ul>
+
+                <!-- Property Support -->
+                <div class="group p-10 md:p-16 bg-white rounded-[4rem] hover:bg-primary hover:text-white transition-all duration-500 reveal border border-black/5 shadow-xl shadow-black/5">
+                    <div class="flex flex-col md:flex-row justify-between gap-8">
+                        <div class="md:w-1/3">
+                            <span class="text-accent font-bold text-sm uppercase tracking-widest mb-4 block">Special Contributor</span>
+                            <h3 class="text-3xl md:text-4xl font-bold leading-tight uppercase tracking-tighter">Property <br>Support</h3>
+                        </div>
+                        <div class="md:w-2/3">
+                            <ul class="space-y-4 text-lg font-light opacity-80">
+                                <li class="flex gap-4"><span>—</span> Managed commercial spaces and room-for-rent properties.</li>
+                                <li class="flex gap-4"><span>—</span> Top contributor for generating leads and increasing occupancy.</li>
+                                <li class="flex gap-4"><span>—</span> Expert in sales communication and client relations.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,41 +175,40 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="relative">
-                    <div class="aspect-square rounded-2xl bg-slate-200 overflow-hidden shadow-2xl">
-                        <!-- Replace with your actual photo -->
-                        <img src="resources/profile.jpeg" alt="Profile Photo" class="w-full h-full object-cover">
+    <section id="about" class="py-32 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-24 items-center">
+                <div class="relative reveal">
+                    <div class="aspect-[4/5] rounded-[4rem] overflow-hidden shadow-2xl">
+                        <img src="resources/Profile.jpg" alt="Profile Photo" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-110 hover:scale-100">
                     </div>
-                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-accent rounded-full flex items-center justify-center text-white font-bold text-center p-4 transform rotate-12 shadow-xl">
-                        With Years Experience
+                    <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-accent rounded-full flex items-center justify-center text-white font-display text-2xl font-black text-center p-6 transform -rotate-12 shadow-2xl floating">
+                        EST. <br>2023
                     </div>
                 </div>
-                <div>
-                    <h3 class="text-3xl font-bold text-primary mb-6">About Me</h3>
-                    <p class="text-slate-600 mb-6 leading-relaxed">
-                        Motivated and disciplined individual with experience in customer service, property rental support, and competitive athletics. Former national athlete of the Philippines, a 5-time national champion, and a Southeast Asian bronze medalist, demonstrating strong dedication, resilience, and a results-driven mindset. Experienced in working in fast-paced environments through my role as a McDonald's crew member, where I developed strong communication, teamwork, and customer service skills. In addition, I have contributed to managing and promoting commercial and room-for-rent properties, where I helped attract clients and improve occupancy as a top contributor. I am eager to apply my work ethic, adaptability, and commitment to excellence in new professional opportunities.
+                <div class="reveal">
+                    <h2 class="font-display text-5xl md:text-7xl font-black tracking-tighter mb-10 leading-none">THE <br><span class="text-accent italic">STORY</span> SO FAR</h2>
+                    <p class="text-xl text-secondary/70 mb-12 font-light leading-relaxed">
+                        Motivated and disciplined individual with experience in customer service, property rental support, and competitive athletics. Former national athlete of the Philippines, a 5-time national champion, and a Southeast Asian bronze medalist, demonstrating strong dedication, resilience, and a results-driven mindset. 
                     </p>
-                    <div class="grid grid-cols-1 gap-4 mb-8">
-                        <div class="p-4 rounded-lg bg-slate-50 border border-slate-100">
-                            <h4 class="font-bold text-primary">PUP UNIVERSITY</h4>
-                            <p class="text-sm text-slate-500">Undergraduate (2024-2026)</p>
+                    
+                    <div class="space-y-6 mb-12">
+                        <div class="p-8 bg-soft rounded-3xl border border-black/5 hover:border-accent/30 transition-colors">
+                            <h4 class="font-bold uppercase tracking-widest text-xs text-accent mb-2">Education</h4>
+                            <p class="text-lg font-semibold">PUP UNIVERSITY — Undergraduate</p>
+                            <p class="text-sm opacity-50 uppercase">2024 - 2026</p>
                         </div>
-                        <div class="p-4 rounded-lg bg-slate-50 border border-slate-100">
-                            <h4 class="font-bold text-primary">HSL BRAILLE COLLEGE</h4>
-                            <p class="text-sm text-slate-500">High School Graduate (2018-2024)</p>
-                        </div>
-                        <div class="p-4 rounded-lg bg-slate-50 border border-slate-100">
-                            <h4 class="font-bold text-primary">SIGNAL ELEMENTARY SCHOOL</h4>
-                            <p class="text-sm text-slate-500">Elementary Graduate (2012-2018)</p>
+                        <div class="p-8 bg-soft rounded-3xl border border-black/5 hover:border-accent/30 transition-colors">
+                            <h4 class="font-bold uppercase tracking-widest text-xs text-accent mb-2">Background</h4>
+                            <p class="text-lg font-semibold">HSL BRAILLE COLLEGE — Graduate</p>
+                            <p class="text-sm opacity-50 uppercase">2018 - 2024</p>
                         </div>
                     </div>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-slate-400 hover:text-accent transition-colors text-2xl"><i class="fab fa-github"></i></a>
-                        <a href="#" class="text-slate-400 hover:text-accent transition-colors text-2xl"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="text-slate-400 hover:text-accent transition-colors text-2xl"><i class="fab fa-twitter"></i></a>
+
+                    <div class="flex space-x-6">
+                        <a href="#" class="w-14 h-14 rounded-full border border-black/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-xl"><i class="fab fa-github"></i></a>
+                        <a href="#" class="w-14 h-14 rounded-full border border-black/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-xl"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="w-14 h-14 rounded-full border border-black/10 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-xl"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
@@ -170,83 +216,76 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h3 class="text-3xl font-bold text-primary mb-4">Core Competencies</h3>
-                <div class="h-1 w-20 bg-accent mx-auto rounded-full"></div>
+    <section id="skills" class="py-32 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-24 reveal">
+                <h2 class="font-display text-5xl md:text-8xl font-black tracking-tighter">CORE <br><span class="text-accent italic">WEAPONS</span></h2>
+                <p class="text-white/40 font-semibold uppercase tracking-widest text-sm mt-6 md:mt-0">Always Sharpening</p>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-                <!-- Skill Card -->
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow text-center">
-                    <h4 class="font-bold text-primary">Hardworking</h4>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-12 border border-white/10 rounded-[3rem] hover:bg-accent transition-colors duration-500 reveal group">
+                    <h4 class="text-3xl font-bold mb-4 uppercase tracking-tighter group-hover:scale-110 transition-transform origin-left">Hardworking</h4>
+                    <p class="text-white/50 group-hover:text-white/80">Unmatched dedication to every project.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow text-center">
-                    <h4 class="font-bold text-primary">Sales Techniques</h4>
+                <div class="p-12 border border-white/10 rounded-[3rem] hover:bg-accent transition-colors duration-500 reveal group">
+                    <h4 class="text-3xl font-bold mb-4 uppercase tracking-tighter group-hover:scale-110 transition-transform origin-left">Development</h4>
+                    <p class="text-white/50 group-hover:text-white/80">Building modern digital experiences.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow text-center">
-                    <h4 class="font-bold text-primary">Development</h4>
+                <div class="p-12 border border-white/10 rounded-[3rem] hover:bg-accent transition-colors duration-500 reveal group">
+                    <h4 class="text-3xl font-bold mb-4 uppercase tracking-tighter group-hover:scale-110 transition-transform origin-left">Video Editing</h4>
+                    <p class="text-white/50 group-hover:text-white/80">Visual storytelling at its finest.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow text-center">
-                    <h4 class="font-bold text-primary">Time Management</h4>
+                <div class="p-12 border border-white/10 rounded-[3rem] hover:bg-accent transition-colors duration-500 reveal group">
+                    <h4 class="text-3xl font-bold mb-4 uppercase tracking-tighter group-hover:scale-110 transition-transform origin-left">Sales Tech</h4>
+                    <p class="text-white/50 group-hover:text-white/80">Strategic communication and results.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow text-center">
-                    <h4 class="font-bold text-primary">Techniques</h4>
+                <div class="p-12 border border-white/10 rounded-[3rem] hover:bg-accent transition-colors duration-500 reveal group">
+                    <h4 class="text-3xl font-bold mb-4 uppercase tracking-tighter group-hover:scale-110 transition-transform origin-left">Time Mgmt</h4>
+                    <p class="text-white/50 group-hover:text-white/80">Efficient and organized workflows.</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow text-center">
-                    <h4 class="font-bold text-primary">Video editing</h4>
+                <div class="p-12 border border-white/10 rounded-[3rem] hover:bg-accent transition-colors duration-500 reveal group">
+                    <h4 class="text-3xl font-bold mb-4 uppercase tracking-tighter group-hover:scale-110 transition-transform origin-left">Techniques</h4>
+                    <p class="text-white/50 group-hover:text-white/80">Mastery of creative tools.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-end mb-12">
-                <div>
-                    <h3 class="text-3xl font-bold text-primary mb-2">Featured Projects</h3>
-                    <p class="text-slate-500">A selection of my recent work</p>
-                </div>
-                <a href="#" class="text-accent font-semibold hover:underline">View All Projects →</a>
+    <section id="projects" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-24 reveal">
+                <h2 class="font-display text-5xl md:text-8xl font-black tracking-tighter">SELECTED <br><span class="gradient-text">WORKS</span></h2>
+                <a href="#" class="text-sm font-bold uppercase tracking-widest border-b-2 border-primary pb-2 hover:text-accent hover:border-accent transition-all">All Projects</a>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="grid md:grid-cols-2 gap-16">
                 <!-- Project 1 -->
-                <div class="group relative bg-slate-100 rounded-3xl overflow-hidden border border-slate-200">
-                    <div class="aspect-video overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?fit=crop&w=800&q=80" alt="Project 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="reveal group">
+                    <div class="aspect-video rounded-[3rem] overflow-hidden bg-soft mb-8 relative">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?fit=crop&w=800&q=80" alt="Project 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-8 py-4 bg-white text-primary rounded-full font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform">View Project</span>
+                        </div>
                     </div>
-                    <div class="p-8">
-                        <div class="flex gap-2 mb-4">
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-medium text-slate-600 border border-slate-200">Next.js</span>
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-medium text-slate-600 border border-slate-200">Tailwind</span>
-                        </div>
-                        <h4 class="text-2xl font-bold text-primary mb-2">E-Commerce Platform</h4>
-                        <p class="text-slate-600 mb-6">A high-performance online store with real-time inventory management and secure payments.</p>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-primary font-bold hover:text-accent transition-colors">Live Demo</a>
-                            <a href="#" class="text-slate-400 hover:text-primary transition-colors"><i class="fab fa-github"></i> Source</a>
-                        </div>
+                    <div class="px-4">
+                        <span class="text-accent font-bold text-xs uppercase tracking-widest mb-2 block">Development / 2024</span>
+                        <h4 class="text-3xl font-bold uppercase tracking-tighter mb-4">E-Commerce Ecosystem</h4>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="group relative bg-slate-100 rounded-3xl overflow-hidden border border-slate-200">
-                    <div class="aspect-video overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?fit=crop&w=800&q=80" alt="Project 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="reveal group">
+                    <div class="aspect-video rounded-[3rem] overflow-hidden bg-soft mb-8 relative">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?fit=crop&w=800&q=80" alt="Project 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-8 py-4 bg-white text-primary rounded-full font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform">View Project</span>
+                        </div>
                     </div>
-                    <div class="p-8">
-                        <div class="flex gap-2 mb-4">
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-medium text-slate-600 border border-slate-200">TypeScript</span>
-                            <span class="px-3 py-1 bg-white rounded-full text-xs font-medium text-slate-600 border border-slate-200">D3.js</span>
-                        </div>
-                        <h4 class="text-2xl font-bold text-primary mb-2">Analytics Dashboard</h4>
-                        <p class="text-slate-600 mb-6">Visualizing complex data patterns with interactive charts and automated reporting tools.</p>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-primary font-bold hover:text-accent transition-colors">Live Demo</a>
-                            <a href="#" class="text-slate-400 hover:text-primary transition-colors"><i class="fab fa-github"></i> Source</a>
-                        </div>
+                    <div class="px-4">
+                        <span class="text-accent font-bold text-xs uppercase tracking-widest mb-2 block">Data Viz / 2024</span>
+                        <h4 class="text-3xl font-bold uppercase tracking-tighter mb-4">Analytics Dashboard</h4>
                     </div>
                 </div>
             </div>
@@ -254,56 +293,101 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-primary text-white">
-        <div class="max-w-3xl mx-auto px-4 text-center">
-            <h3 class="text-4xl font-bold mb-6">Ready to start a project?</h3>
-            <p class="text-slate-400 mb-10 text-lg">
-                I'm currently looking for new opportunities. Whether you have a question or just want to say hi, my inbox is always open!
-            </p>
-            <form class="space-y-4">
-                <div class="grid grid-cols-2 gap-4">
-                    <input type="text" placeholder="Name" class="w-full p-4 rounded-xl bg-slate-800 border border-slate-700 focus:outline-none focus:border-accent transition-colors">
-                    <input type="email" placeholder="Email" class="w-full p-4 rounded-xl bg-slate-800 border border-slate-700 focus:outline-none focus:border-accent transition-colors">
+    <section id="contact" class="py-32 bg-soft rounded-[5rem] mx-6 mb-12">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="reveal">
+                <h2 class="font-display text-5xl md:text-8xl font-black tracking-tighter mb-10 leading-none">LET'S <br><span class="text-accent italic">CREATE</span></h2>
+                <p class="text-xl text-secondary/60 mb-16 font-light">
+                    Have a vision? Let's bring it to life together.
+                </p>
+            </div>
+            
+            <form class="space-y-6 reveal">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="Your Name" class="w-full p-6 rounded-3xl bg-white border border-black/5 focus:outline-none focus:border-accent transition-colors font-semibold">
+                    <input type="email" placeholder="Email Address" class="w-full p-6 rounded-3xl bg-white border border-black/5 focus:outline-none focus:border-accent transition-colors font-semibold">
                 </div>
-                <textarea rows="4" placeholder="Message" class="w-full p-4 rounded-xl bg-slate-800 border border-slate-700 focus:outline-none focus:border-accent transition-colors"></textarea>
-                <button type="submit" class="w-full py-4 bg-accent hover:bg-blue-600 text-white font-bold rounded-xl transition-all">Send Message</button>
+                <textarea rows="4" placeholder="Your Vision" class="w-full p-6 rounded-3xl bg-white border border-black/5 focus:outline-none focus:border-accent transition-colors font-semibold"></textarea>
+                <button type="submit" class="w-full py-6 bg-primary text-white font-bold rounded-full hover:bg-accent transition-all text-lg uppercase tracking-widest">Send Message</button>
             </form>
-            <div class="mt-12 pt-12 border-t border-slate-800 flex justify-center space-x-8 text-slate-400">
-                <a href="mailto:superferdy011@gmail.com" class="hover:text-white transition-colors"><i class="fas fa-envelope mr-2"></i> superferdy011@gmail.com</a>
-                <span class="hidden sm:inline">|</span>
-                <a href="#" class="hover:text-white transition-colors"><i class="fas fa-phone mr-2"></i> 09629958799</a>
-                <span class="hidden sm:inline">|</span>
-                <a href="#" class="hover:text-white transition-colors"><i class="fas fa-map-marker-alt mr-2"></i> 37 mabolo st. taguig city</a>
+            
+            <div class="mt-24 pt-24 border-t border-black/5 grid md:grid-cols-3 gap-12 reveal">
+                <div class="text-center">
+                    <h5 class="text-xs font-bold uppercase tracking-widest text-accent mb-4">Email</h5>
+                    <a href="mailto:superferdy011@gmail.com" class="text-lg font-bold hover:text-accent transition-colors">superferdy011@gmail.com</a>
+                </div>
+                <div class="text-center">
+                    <h5 class="text-xs font-bold uppercase tracking-widest text-accent mb-4">Phone</h5>
+                    <a href="tel:09629958799" class="text-lg font-bold hover:text-accent transition-colors">09629958799</a>
+                </div>
+                <div class="text-center">
+                    <h5 class="text-xs font-bold uppercase tracking-widest text-accent mb-4">Location</h5>
+                    <p class="text-lg font-bold">Taguig City, PH</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-10 bg-primary text-slate-500 border-t border-slate-800 text-center text-sm">
-        <p>© 2024 Your Name. All rights reserved.</p>
+    <footer class="py-12 text-center text-secondary/30 text-xs font-bold uppercase tracking-[0.3em]">
+        <p>© 2024 Ferdinand Fortes — All Rights Reserved</p>
     </footer>
 
     <script>
+        // Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Initial check
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate(${e.clientX - 16}px, ${e.clientY - 16}px)`;
+        });
+
+        // Form Submission
         const form = document.querySelector('form');
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const btn = form.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = 'SENDING...';
+            btn.disabled = true;
+
             const name = form.querySelector('input[type="text"]').value;
             const email = form.querySelector('input[type="email"]').value;
             const message = form.querySelector('textarea').value;
 
-            const response = await fetch('/api/send-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name, email, message }),
-            });
+            try {
+                const response = await fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, email, message }),
+                });
 
-            const result = await response.json();
-            if (result.debug) {
-                alert(`${result.message}\nError: ${result.debug}\n${result.hint}`);
-            } else {
-                alert(result.message);
+                const result = await response.json();
+                if (result.debug) {
+                    alert(`${result.message}\nError: ${result.debug}\n${result.hint}`);
+                } else {
+                    alert(result.message);
+                }
+            } catch (err) {
+                alert('Connection error. Please try again.');
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
             }
         });
     </script>
